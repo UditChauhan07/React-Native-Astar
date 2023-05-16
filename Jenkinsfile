@@ -15,7 +15,7 @@ pipeline {
                 tool 'Node.js'
 
                 // Install project dependencies using yarn
-                sh 'yarn install'
+                sh 'npm install --legacy-peer-deps'
             }
         }
 
