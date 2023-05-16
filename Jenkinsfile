@@ -12,7 +12,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Use Node.js installed on the Jenkins agent
-                tool 'Node.js'
+                tool 'Nodejs'
 
                 // Install project dependencies using yarn
                 sh 'npm install --legacy-peer-deps'
