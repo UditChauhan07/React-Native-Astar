@@ -18,34 +18,45 @@ pipeline {
                 sh 'npm i --legacy-peer-deps'
             }
         }
-
-        stage('Build') {
-            steps {
-                // Build the React Native project
-                sh 'npx react-native build --platform android'
+    stage('Build Docker') {
+        steps {
+            // Login to Docker registry
+            docker.withRegistry('uditchauhan/astar8') {
+                // Build the Docker image
+                    docker.build()
+                    }
             }
-        }
+    }
 
-        stage('Test') {
-            steps {
-                // Run tests, if applicable
-                // Modify this step according to your testing setup
-                sh 'npm test'
-            }
-        }
 
-        stage('Package APK') {
-            steps {
-                // Package the Android APK file
-                sh 'npx react-native run-android --variant=release'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         // Build the React Native project
+        //         sh 'cd android'
+        //         sh './gradlew bundleRelease'
+        //     }
+        // }
 
-        stage('Archive APK') {
-            steps {
-                // Archive the APK file as an artifact
-                archiveArtifacts artifacts: 'android/app/build/outputs/apk/release/*.apk', fingerprint: true
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         // Run tests, if applicable
+        //         // Modify this step according to your testing setup
+        //         sh 'npm test'
+        //     }
+        // }
+
+        // stage('Package APK') {
+        //     steps {
+        //         // Package the Android APK file
+        //         sh 'npx react-native run-android --variant=release'
+        //     }
+        // }
+
+        // stage('Archive APK') {
+        //     steps {
+        //         // Archive the APK file as an artifact
+        //         archiveArtifacts artifacts: 'android/app/build/outputs/apk/release/*.apk', fingerprint: true
+        //     }
+        // }
     }
 }
