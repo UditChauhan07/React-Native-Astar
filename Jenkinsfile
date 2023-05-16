@@ -19,14 +19,14 @@ pipeline {
         //     }
         // }
     stage('Build docker Image'){
-     app = docker.build("uditchauhan07/astar8")
-     }
-     stage('Push Image'){
-     docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
-     app.push("${env.BUILD_NUMBER}")            
-     app.push("latest")   
-          }
-     }
+        app = docker.build("uditchauhan07/astar8")
+        }  
+        stage('Push Image'){
+             docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
+                app.push("${env.BUILD_NUMBER}")            
+                     app.push("latest")   
+            }
+        }   
 
         // stage('Build') {
         //     steps {
