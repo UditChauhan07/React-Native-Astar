@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json yarn.lock /app/
-RUN yarn install --frozen-lockfile
+RUN npm install --legacy-peer-deps
 
 # Copy project files
 COPY . /app/
