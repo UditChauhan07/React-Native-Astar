@@ -18,16 +18,15 @@ pipeline {
                 sh 'npm i --legacy-peer-deps'
             }
         }
-    stage('Build Docker') {
-        steps {
-            // Login to Docker registry
-            docker.withRegistry('uditchauhan/astar8') {
-                // Build the Docker image
-                    docker.build()
-                    }
-            }
-    }
-
+    stage('Build docker Image'){
+     app = docker.build("uditchauhan07/astar8")
+     }
+     stage('Push Image'){
+     docker.withRegistry('https://registry.hub.docker.com','dockerhub'){            
+     app.push("${env.BUILD_NUMBER}")            
+     app.push("latest")   
+          }
+     }
 
         // stage('Build') {
         //     steps {
