@@ -9,15 +9,15 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                // Use Node.js installed on the Jenkins agent
-                tool 'Nodejs'
+        // stage('Install Dependencies') {
+        //     steps {
+        //         // Use Node.js installed on the Jenkins agent
+        //         tool 'Nodejs'
 
-                // Install project dependencies using yarn
-                sh 'npm i --legacy-peer-deps'
-            }
-        }
+        //         // Install project dependencies using yarn
+        //         sh 'npm i --legacy-peer-deps'
+        //     }
+        // }
     stage('Build docker Image'){
      app = docker.build("uditchauhan07/astar8")
      }
